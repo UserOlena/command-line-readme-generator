@@ -33,7 +33,7 @@
 ---
 Raw README file
 
-![Preview](./assets/img/preview_1.png) 
+![Preview](./assets/img/preview_2.png) 
 
 ---
 ## Technologies Used
