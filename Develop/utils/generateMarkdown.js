@@ -4,17 +4,17 @@ function renderLicenseBadge( { license } ) {
   const url = 'https://img.shields.io/badge/';
 
   if (license === 'MIT') {
-    licenseBadge = `[![License: MIT license](${url}license-MIT_license-success)](https://opensource.org/licenses/MIT)`;
+    licenseBadge = `[![License: MIT license](${url}License-MIT_license-success)](https://opensource.org/licenses/MIT)   `;
   } else if (license === 'GPLv2') {
-    licenseBadge = `[![License: GPL v2](${url}License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)`;
+    licenseBadge = `[![License: GPL v2](${url}License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)   `;
   } else if (license === 'Apache 2.0') {
-    licenseBadge = `[![License](${url}License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
+    licenseBadge = `[![License](${url}License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)   `;
   } else if (license === 'GPLv3') {
-    licenseBadge = `[![License: GPL v3](${url}License-GPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
+    licenseBadge = `[![License: GPL v3](${url}License-GPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)   `;
   } else if (license === 'BSD 3-clause') {
-    licenseBadge = `[![License](${url}License-BSD__3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)`;
-  } else if (license === 'Unlicense') {
-    licenseBadge = `[![License: Unlicense](${url}license-Unlicense-blue.svg)](http://unlicense.org/)`;
+    licenseBadge = `[![License](${url}License-BSD__3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)   `;
+  } else if (license === 'Unlicensed') {
+    licenseBadge = `[![License: Unlicensed](${url}License-Unlicensed-blue.svg)](http://unlicense.org/)   `;
   } else {
     licenseBadge = '';
   }
@@ -53,12 +53,12 @@ function renderProjectStatusBadge( {isProjectStatus, projectStatus} ) {
   const url = 'https://img.shields.io/badge/';
 
   if (isProjectStatus) {
-    if (projectStatus === 'complete') {
-      projectStatusBadge = `## Project Status \n![Project status](${url}Status-Complete-success)\n\n---\n`;
-    } else if (projectStatus === 'in development') {
-      projectStatusBadge = `## Project Status \n![Project status](${url}Status-In_Development-blue)\n\n---\n`;
-    } else if (projectStatus === 'abandoned') {
-      projectStatusBadge = `## Project Status \n![Project status](${url}Status-Abandoned-inactive)\n\n---\n`;
+    if (projectStatus === 'Complete') {
+      projectStatusBadge = `![Project status](${url}Status-Complete-success)\n---`;
+    } else if (projectStatus === 'In development') {
+      projectStatusBadge = `![Project status](${url}Status-In_Development-blue)\n---`;
+    } else if (projectStatus === 'Abandoned') {
+      projectStatusBadge = `![Project status](${url}Status-Abandoned-inactive)\n---`;
     } 
   } else {
     projectStatusBadge = '';
@@ -71,7 +71,7 @@ function renderProjectStatusBadge( {isProjectStatus, projectStatus} ) {
 // function produces a live demo section based on the user's input.
 function liveDemo( { isLiveDemo, liveDemoLink } ) {
   if (isLiveDemo) {
-    return `> Live demo [_here_](${liveDemoLink})`;
+    return `- Live [Demo](${liveDemoLink})`;
   } else {
     return '';
   }
@@ -91,7 +91,7 @@ function tableOfContent(boolean, string) {
 // function creates README sections according to the user's preference of whether to include specific sections or not.
 function readmeSection(boolean, dataValue) {
   if (boolean) {
-    return `${dataValue} \n\n---\n` ;
+    return `${dataValue} \n---` ;
   } else {
     return '';
   }
@@ -130,11 +130,13 @@ function renderQuestionsSection( { isQuestions, gitHubUserName, email, questions
 // function generates Markdown content for a README file.
 function generateMarkdown(data) {
   const licenseBadge = renderLicenseBadge(data);
+  const projectStatusBadge = renderProjectStatusBadge(data);
 
   return `
 # ${data.title} \n
 ${licenseBadge} \n
-> ${data.description} \n
+${projectStatusBadge} \n
+> ${data.description}
 ${liveDemo(data)}
 ---
 
@@ -156,21 +158,21 @@ ${tableOfContent(data.isContact, '* [Contact](#contact)')}
 * [License](#license)
 ---
 
-${readmeSection(data.isGeneralInfo, `## General Information \n${data.generalInfo}`)}
+${readmeSection(data.isGeneralInfo, `## General Information \n>${data.generalInfo}`)}
 ${readmeSection(data.isPreview, `## Preview \n![Preview](${data.preview})`)}
 ${unorderedListSection(data.isTechnologiesUsed, `## Technologies Used, ${data.technologiesUsed}`)}
 ## Installation
-${data.installation}
+>${data.installation}
 ---
 ## Usage
-${data.usage}
+>${data.usage}
 ---
 ${readmeSection(data.isFeatures, `## Features \n${data.features}`)}
 ${readmeSection(data.isCredits, `## Credits \n${data.credits}`)}
 ${readmeSection(data.isContributing, `## Contributing \n${data.contributing}`)}
 ${readmeSection(data.isTests, `## Tests \n${data.tests}`)}
 ${renderQuestionsSection(data)}
-${renderProjectStatusBadge(data)}
+${readmeSection(data.isProjectStatus, `## Project Status \n>${data.projectStatus}`)}
 ${readmeSection(data.isUserStory, `## User Story
 \`\`\`md
 ${data.userStory}
