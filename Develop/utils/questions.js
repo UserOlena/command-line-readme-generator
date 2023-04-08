@@ -166,9 +166,9 @@ const questions = [
         message: 'Choose your project status:',
         type: 'list',
         choices: [
-            'complete', 
-            'in development', 
-            'abandoned'
+            'Complete', 
+            'In development', 
+            'Abandoned'
         ],
         when: (answers) => answers.isProjectStatus === true,
     },
@@ -218,7 +218,7 @@ const questions = [
             'Apache 2.0',
             'GPLv3',
             'BSD 3-clause',
-            'Unlicense'
+            'Unlicensed'
         ],
     },
 ]
