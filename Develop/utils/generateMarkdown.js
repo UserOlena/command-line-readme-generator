@@ -37,7 +37,7 @@ function renderLicenseLink( { license } ) {
     licenseLink = `[${license}](https://www.gnu.org/licenses/gpl-3.0)`;
   } else if (license === 'BSD 3-clause') {
     licenseLink = `[${license}](https://opensource.org/licenses/BSD-3-Clause)`;
-  } else if (license === 'Unlicense') {
+  } else if (license === 'Unlicensed') {
     licenseLink = `[${license}](http://unlicense.org/)`;
   } else {
     licenseLink = '';
